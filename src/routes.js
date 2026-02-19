@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 import CategoryController from './app/controllers/CategoryController.js';
+import OrderController from './app/controllers/OrderController.js';
 import ProductController from './app/controllers/ProductController.js';
 import SessionController from './app/controllers/SessionController.js';
 import UserController from './app/controllers/UserController.js';
@@ -8,18 +9,9 @@ import multerConfig from './config/multer.cjs';
 import adminMiddleware from './middlewares/admin.js';
 import authMiddleware from './middlewares/auth.js';
 
-
-
 const routes = new Router();
 
 const upload = multer(multerConfig);
-
-/*
-POST -> Criar
-PUT/PATCH -> Atualizar
-GET -> BUSCAR
-DELETE -> DELETAR
-*/
 
 routes.post('/session', SessionController.store);
 routes.post('/users', UserController.store);
@@ -56,5 +48,11 @@ routes.put(
 );
 
 routes.get('/categories', CategoryController.index);
+
+routes.post(
+    '/Orders',
+    adminMiddleware,
+    OrderController.store,
+);
 
 export default routes;
