@@ -49,10 +49,12 @@ class SessionController {
             emailOrPasswordIncorrect();
         }
 
-        const token = jwt.sign({ id: existingUser.id }, autoConfig.secret, {
-            expiresIn: autoConfig.expiresIn,
-        });
-
+        const token = jwt.sign({ id: existingUser.id, admin: existingUser.admin },
+            autoConfig.secret,
+            {
+                expiresIn: autoConfig.expiresIn,
+            }
+        );
 
         return response.status(200).json({
             id: existingUser.id,
