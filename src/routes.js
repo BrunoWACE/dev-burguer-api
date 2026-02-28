@@ -49,8 +49,8 @@ routes.put(
 
 routes.get('/categories', CategoryController.index);
 
-routes.post('/Orders', OrderController.store);
-routes.get('/Orders', OrderController.index);
+routes.post('/orders', OrderController.store);
+routes.get('/orders', OrderController.index);
 routes.put('/orders/:id', adminMiddleware, OrderController.update);
 
 export default routes;
