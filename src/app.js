@@ -1,11 +1,14 @@
-import express from 'express';
-import fileRouteConfig from './config/fileRoutes.cjs';
-import routes from './routes.js';
+import cors from 'cors';
 
+import express from 'express';
+
+import fileRouteConfig from './config/fileRoutes.cjs';
+
+import routes from './routes.js';
 
 const app = express();
 
-
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/product-file', fileRouteConfig);
